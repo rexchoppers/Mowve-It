@@ -5,3 +5,4 @@
 bin/.gitignore
 .settings/org.eclipse.m2e.core.prefs
 README
+bin/
