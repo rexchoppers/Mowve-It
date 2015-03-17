@@ -136,11 +136,10 @@ public class Mowve {
 		startXDOG = random.nextInt(15) + 1;
 		startYDOG = random.nextInt(14) + 1;
 
-		@SuppressWarnings("unused")
 		Dog dog = new Dog(tileMap.getTile(startXDOG, startYDOG), 64, 64,
 				TextureManager.qLoadTexture("ene"), tileMap);
 		// dog.draw();
-		@SuppressWarnings("unused")
+
 		Cat cat = new Cat(tileMap.getTile(5, 5), 64, 64,
 				TextureManager.qLoadTexture("ene"), tileMap);
 
@@ -229,5 +228,4 @@ public class Mowve {
 		main = null;
 		main = new Mowve();
 	}
-
 }

@@ -4,7 +4,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import org.lwjgl.input.Keyboard;
-import org.newdawn.slick.Color;
 import org.newdawn.slick.opengl.Texture;
 
 import co.uk.RandomPanda30.Drawing.QuadDrawing;
@@ -23,7 +22,7 @@ public class Player {
 	 */
 
 	private float x, y;
-	private int lives = 2;
+	private int lives = 3;
 	private int points = 0;
 	private boolean moved = false;
 	private float cX, cY;
@@ -32,12 +31,19 @@ public class Player {
 	private Map map;
 
 	private TextHandler th;
-	private HeartHandler hh;
+
+	private HeartHandler hh1;
+	private HeartHandler hh2;
+	private HeartHandler hh3;
+
+	private boolean heart1 = true;
+	private boolean heart2 = true;
+	private boolean heart3 = true;
 
 	private boolean f = true;
 	private boolean pressed = false;
 
-	public Player(Tile startTile, int width, int height, Texture texture,
+	public Player (Tile startTile, int width, int height, Texture texture,
 			Map map) {
 		this.x = startTile.getX();
 		this.y = startTile.getY();
@@ -50,14 +56,33 @@ public class Player {
 	public void draw() {
 		QuadDrawing.drawTexQuad(cX, cY, width, height, texture);
 
-		th = new TextHandler(Integer.toString(points), cX + 26, cY - 25,
-				"Arial", 20, Color.red);
-		th.draw();
+		if (points <= 99) {
+			th = new TextHandler(Integer.toString(points), cX + 26, cY - 25,
+					"Arial", 20);
+			th.draw();
+		} else {
+			th = new TextHandler(Integer.toString(points), cX + 15, cY - 25,
+					"Arial", 20);
+			th.draw();
+		}
 
-		hh = new HeartHandler(TextureManager.qLoadTexture("heart"), cX + 
-				24,
-				cY - 50, 16, 16);
-		hh.updateHearts();
+		if (heart1) {
+			hh1 = new HeartHandler(TextureManager.qLoadTexture("heart"),
+					cX + 24, cY - 50, 16, 16);
+			hh1.draw();
+		}
+
+		if (heart2) {
+			hh2 = new HeartHandler(TextureManager.qLoadTexture("heart"),
+					cX + 5, cY - 50, 16, 16);
+			hh2.draw();
+		}
+
+		if (heart3) {
+			hh3 = new HeartHandler(TextureManager.qLoadTexture("heart"),
+					cX + 43, cY - 50, 16, 16);
+			hh3.draw();
+		}
 	}
 
 	public void addLife(int no) {
@@ -66,6 +91,15 @@ public class Player {
 
 	public void removeLife(int no) {
 		lives = lives - no;
+
+		if (heart2 == true) {
+			heart2 = false;
+		} else if (heart1 == true) {
+			heart1 = false;
+		} else {
+			heart3 = false;
+		}
+
 		if (lives == 0) {
 			gameOver();
 		}
