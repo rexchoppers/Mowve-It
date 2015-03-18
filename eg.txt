@@ -1,5 +1,0 @@
-				Color.white.bind();
-				TrueTypeFont font;
-				Font awtFont = new Font("Times New Roman", Font.BOLD, 24);
-				font = new TrueTypeFont(awtFont, false);
-				font.drawString(100, 100, "Test");
