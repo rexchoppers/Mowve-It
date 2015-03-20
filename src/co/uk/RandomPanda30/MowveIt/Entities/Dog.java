@@ -69,18 +69,22 @@ public class Dog implements Entity {
 			upTile = map.getTile((int) Math.floor(cX / 64),
 					(int) Math.floor(cY / 64) - 1);
 			downTile = map.getTile((int) Math.floor(cX / 64),
-					(int) Math.floor(cY / 64) + 1);			
+					(int) Math.floor(cY / 64) + 1);
 			if (!i) {
-				if (playerNear) {
-					// Panic and run here!
+				if (!playerNear) {
+					moved = true;
+					i = true;
+					Tile random = randomTile();
+					updateLocation((int) Math.floor(random.getX()),
+							(int) Math.floor(random.getY()));
+					checkCollisions();
+					stepTimer();
+				} else {
+					for(int i = 0; i < 5; i++) {
+						runTimer();
+					}
+					playerNear = false;
 				}
-				moved = true;
-				i = true;
-				Tile random = randomTile();
-				updateLocation((int) Math.floor(random.getX()),
-						(int) Math.floor(random.getY()));
-				checkCollisions();
-				stepTimer();
 			}
 		}
 		draw();
@@ -134,14 +138,14 @@ public class Dog implements Entity {
 
 	public void runTimer() {
 		Timer timer = new Timer();
-		timer.scheduleAtFixedRate(new TimerTask() {
+		timer.schedule(new TimerTask() {
 			@Override
 			public void run() {
 				Tile tile = randomTile();
 				updateLocation((int) Math.floor(tile.getX()),
 						(int) Math.floor(tile.getY()));
 			}
-		}, 0, 500);
+		}, 700);
 	}
 
 	public void checkCollisions() {
@@ -163,11 +167,11 @@ public class Dog implements Entity {
 
 	public void setX() {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	public void setY() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
