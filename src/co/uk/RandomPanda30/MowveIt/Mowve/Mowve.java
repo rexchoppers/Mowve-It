@@ -18,7 +18,6 @@ import co.uk.RandomPanda30.MowveIt.Map.Map;
 import co.uk.RandomPanda30.MowveIt.Music.Music;
 import co.uk.RandomPanda30.MowveIt.Tiles.Tile;
 import co.uk.RandomPanda30.MowveIt.Utils.Clock;
-import co.uk.RandomPanda30.MowveIt.Utils.Time;
 
 public class Mowve {
 
@@ -38,10 +37,6 @@ public class Mowve {
 	private static int startYDOG;
 
 	private static boolean fullscreen = false;
-
-	public static boolean timeup = false;
-
-	public static boolean mm = true;
 
 	public static long time = 0;
 	public static int minutes = 1;
@@ -142,29 +137,24 @@ public class Mowve {
 				TextureManager.qLoadTexture("ene"), tileMap);
 
 		while (!Display.isCloseRequested()) {
-			Time.checkTime();
-			if (!timeup) {
-				Clock.update();
-				tileMap.draw();
-				player.update();
-				// dog.update();
+			Clock.update();
+			tileMap.draw();
+			player.update();
+			// dog.update();
 
-				if (Keyboard.isKeyDown(Keyboard.KEY_F2)) {
-					if (!fullscreen) {
-						fullscreen = true;
+			if (Keyboard.isKeyDown(Keyboard.KEY_F2)) {
+				if (!fullscreen) {
+					fullscreen = true;
 
-					}
 				}
-
-				if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
-					terminate();
-				}
-
-				Display.update();
-				Display.sync(60);
-			} else {
-
 			}
+
+			if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
+				terminate();
+			}
+
+			Display.update();
+			Display.sync(60);
 		}
 		Display.destroy();
 	}

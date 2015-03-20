@@ -36,10 +36,15 @@ public class Player {
 	private boolean heart2 = true;
 	private boolean heart3 = true;
 
+	private boolean aR = true;
+	private boolean aL = true;
+	private boolean aU = true;
+	private boolean aD = true;
+
 	private boolean f = true;
 	private boolean pressed = false;
 
-	public Player(Tile startTile, int width, int height, Texture texture,
+	public Player (Tile startTile, int width, int height, Texture texture,
 			Map map) {
 		this.x = startTile.getX();
 		this.y = startTile.getY();
@@ -151,8 +156,16 @@ public class Player {
 			Tile startingTile = map.getTile((int) (x / 64), (int) (y / 64));
 			Tile currentTile = map.getTile((int) Math.floor(cX / 64),
 					(int) Math.floor(cY / 64));
-			Tile rightTile = map.getTile((int) Math.floor(cX / 64) + 1,
-					(int) Math.floor(cY / 64));
+
+			Tile rightTile = null;
+			if (map.getTile((int) Math.floor(cX / 64) + 1,
+					(int) Math.floor(cY / 64)) != null) {
+				rightTile = map.getTile((int) Math.floor(cX / 64) + 1,
+						(int) Math.floor(cY / 64));
+			} else {
+				System.err.println("test");
+			}
+
 			Tile leftTile = map.getTile((int) Math.floor(cX / 64) - 1,
 					(int) Math.floor(cY / 64));
 			Tile upTile = map.getTile((int) Math.floor(cX / 64),
@@ -160,167 +173,177 @@ public class Player {
 			Tile downTile = map.getTile((int) Math.floor(cX / 64),
 					(int) Math.floor(cY / 64) + 1);
 
-			if (Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
-				if (!pressed) {
-					if (!moved) {
-						setStartTile();
-						moved = true;
+			if (aL) {
+				if (Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
+					if (!pressed) {
+						if (!moved) {
+							setStartTile();
+							moved = true;
+						}
+						switch (rightTile.getType()) {
+						case GRASS:
+							map.setTile(
+									(int) Math.floor(rightTile.getX() / 64),
+									(int) Math.floor(rightTile.getY() / 64),
+									TileType.DIRT);
+							updateLocation((int) Math.floor(rightTile.getX()),
+									(int) Math.floor(rightTile.getY()));
+							addPoints(1);
+							break;
+						case DIRT:
+							updateLocation((int) Math.floor(rightTile.getX()),
+									(int) Math.floor(rightTile.getY()));
+							break;
+						case WATER:
+							break;
+						case ORNAMENT:
+							spawn(startingTile, currentTile, 1, 10);
+							break;
+						case FLOWER:
+							spawn(startingTile, currentTile, 1, 10);
+							break;
+						case GNOME:
+							map.setTile(
+									(int) Math.floor(rightTile.getX() / 64),
+									(int) Math.floor(rightTile.getY() / 64),
+									TileType.DIRT);
+							updateLocation((int) Math.floor(rightTile.getX()),
+									(int) Math.floor(rightTile.getY()));
+							addPoints(10);
+							break;
+						}
+						pressed = true;
+						keyTimer();
 					}
-					switch (rightTile.getType()) {
-					case GRASS:
-						map.setTile((int) Math.floor(rightTile.getX() / 64),
-								(int) Math.floor(rightTile.getY() / 64),
-								TileType.DIRT);
-						updateLocation((int) Math.floor(rightTile.getX()),
-								(int) Math.floor(rightTile.getY()));
-						addPoints(1);
-						break;
-					case DIRT:
-						updateLocation((int) Math.floor(rightTile.getX()),
-								(int) Math.floor(rightTile.getY()));
-						break;
-					case WATER:
-						break;
-					case ORNAMENT:
-						spawn(startingTile, currentTile, 1, 10);
-						break;
-					case FLOWER:
-						spawn(startingTile, currentTile, 1, 10);
-						break;
-					case GNOME:
-						map.setTile((int) Math.floor(rightTile.getX() / 64),
-								(int) Math.floor(rightTile.getY() / 64),
-								TileType.DIRT);
-						updateLocation((int) Math.floor(rightTile.getX()),
-								(int) Math.floor(rightTile.getY()));
-						addPoints(10);
-						break;
-					}
-					pressed = true;
-					keyTimer();
 				}
 			}
 
-			if (Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
-				if (!pressed) {
-					if (!moved) {
-						setStartTile();
-						moved = true;
+			if (aR) {
+				if (Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
+					if (!pressed) {
+						if (!moved) {
+							setStartTile();
+							moved = true;
+						}
+						switch (leftTile.getType()) {
+						case GRASS:
+							map.setTile((int) Math.floor(leftTile.getX() / 64),
+									(int) Math.floor(leftTile.getY() / 64),
+									TileType.DIRT);
+							addPoints(1);
+							updateLocation((int) Math.floor(leftTile.getX()),
+									(int) Math.floor(leftTile.getY()));
+							break;
+						case DIRT:
+							updateLocation((int) Math.floor(leftTile.getX()),
+									(int) Math.floor(leftTile.getY()));
+							break;
+						case WATER:
+							break;
+						case ORNAMENT:
+							spawn(startingTile, currentTile, 1, 10);
+							break;
+						case FLOWER:
+							spawn(startingTile, currentTile, 1, 10);
+							break;
+						case GNOME:
+							map.setTile((int) Math.floor(leftTile.getX() / 64),
+									(int) Math.floor(leftTile.getY() / 64),
+									TileType.DIRT);
+							updateLocation((int) Math.floor(leftTile.getX()),
+									(int) Math.floor(leftTile.getY()));
+							addPoints(10);
+							break;
+						}
+						pressed = true;
+						keyTimer();
 					}
-					switch (leftTile.getType()) {
-					case GRASS:
-						map.setTile((int) Math.floor(leftTile.getX() / 64),
-								(int) Math.floor(leftTile.getY() / 64),
-								TileType.DIRT);
-						addPoints(1);
-						updateLocation((int) Math.floor(leftTile.getX()),
-								(int) Math.floor(leftTile.getY()));
-						break;
-					case DIRT:
-						updateLocation((int) Math.floor(leftTile.getX()),
-								(int) Math.floor(leftTile.getY()));
-						break;
-					case WATER:
-						break;
-					case ORNAMENT:
-						spawn(startingTile, currentTile, 1, 10);
-						break;
-					case FLOWER:
-						spawn(startingTile, currentTile, 1, 10);
-						break;
-					case GNOME:
-						map.setTile((int) Math.floor(leftTile.getX() / 64),
-								(int) Math.floor(leftTile.getY() / 64),
-								TileType.DIRT);
-						updateLocation((int) Math.floor(leftTile.getX()),
-								(int) Math.floor(leftTile.getY()));
-						addPoints(10);
-						break;
-					}
-					pressed = true;
-					keyTimer();
 				}
 			}
 
-			if (Keyboard.isKeyDown(Keyboard.KEY_UP)) {
-				if (!pressed) {
-					if (!moved) {
-						setStartTile();
-						moved = true;
+			if (aU) {
+				if (Keyboard.isKeyDown(Keyboard.KEY_UP)) {
+					if (!pressed) {
+						if (!moved) {
+							setStartTile();
+							moved = true;
+						}
+						switch (upTile.getType()) {
+						case GRASS:
+							map.setTile((int) Math.floor(upTile.getX() / 64),
+									(int) Math.floor(upTile.getY() / 64),
+									TileType.DIRT);
+							addPoints(1);
+							updateLocation((int) Math.floor(upTile.getX()),
+									(int) Math.floor(upTile.getY()));
+							break;
+						case DIRT:
+							updateLocation((int) Math.floor(upTile.getX()),
+									(int) Math.floor(upTile.getY()));
+							break;
+						case WATER:
+							break;
+						case ORNAMENT:
+							spawn(startingTile, currentTile, 1, 10);
+							break;
+						case FLOWER:
+							spawn(startingTile, currentTile, 1, 10);
+							break;
+						case GNOME:
+							map.setTile((int) Math.floor(upTile.getX() / 64),
+									(int) Math.floor(upTile.getY() / 64),
+									TileType.DIRT);
+							updateLocation((int) Math.floor(upTile.getX()),
+									(int) Math.floor(upTile.getY()));
+							addPoints(10);
+							break;
+						}
+						pressed = true;
+						keyTimer();
 					}
-					switch (upTile.getType()) {
-					case GRASS:
-						map.setTile((int) Math.floor(upTile.getX() / 64),
-								(int) Math.floor(upTile.getY() / 64),
-								TileType.DIRT);
-						addPoints(1);
-						updateLocation((int) Math.floor(upTile.getX()),
-								(int) Math.floor(upTile.getY()));
-						break;
-					case DIRT:
-						updateLocation((int) Math.floor(upTile.getX()),
-								(int) Math.floor(upTile.getY()));
-						break;
-					case WATER:
-						break;
-					case ORNAMENT:
-						spawn(startingTile, currentTile, 1, 10);
-						break;
-					case FLOWER:
-						spawn(startingTile, currentTile, 1, 10);
-						break;
-					case GNOME:
-						map.setTile((int) Math.floor(upTile.getX() / 64),
-								(int) Math.floor(upTile.getY() / 64),
-								TileType.DIRT);
-						updateLocation((int) Math.floor(upTile.getX()),
-								(int) Math.floor(upTile.getY()));
-						addPoints(10);
-						break;
-					}
-					pressed = true;
-					keyTimer();
 				}
 			}
 
-			if (Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
-				if (!pressed) {
-					if (!moved) {
-						setStartTile();
-						moved = true;
+			if (aD) {
+				if (Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
+					if (!pressed) {
+						if (!moved) {
+							setStartTile();
+							moved = true;
+						}
+						switch (downTile.getType()) {
+						case GRASS:
+							map.setTile((int) Math.floor(downTile.getX() / 64),
+									(int) Math.floor(downTile.getY() / 64),
+									TileType.DIRT);
+							addPoints(1);
+							updateLocation((int) Math.floor(downTile.getX()),
+									(int) Math.floor(downTile.getY()));
+							break;
+						case DIRT:
+							updateLocation((int) Math.floor(downTile.getX()),
+									(int) Math.floor(downTile.getY()));
+							break;
+						case WATER:
+							break;
+						case ORNAMENT:
+							spawn(startingTile, currentTile, 1, 10);
+							break;
+						case FLOWER:
+							spawn(startingTile, currentTile, 1, 10);
+							break;
+						case GNOME:
+							map.setTile((int) Math.floor(downTile.getX() / 64),
+									(int) Math.floor(downTile.getY() / 64),
+									TileType.DIRT);
+							updateLocation((int) Math.floor(downTile.getX()),
+									(int) Math.floor(downTile.getY()));
+							addPoints(10);
+							break;
+						}
+						pressed = true;
+						keyTimer();
 					}
-					switch (downTile.getType()) {
-					case GRASS:
-						map.setTile((int) Math.floor(downTile.getX() / 64),
-								(int) Math.floor(downTile.getY() / 64),
-								TileType.DIRT);
-						addPoints(1);
-						updateLocation((int) Math.floor(downTile.getX()),
-								(int) Math.floor(downTile.getY()));
-						break;
-					case DIRT:
-						updateLocation((int) Math.floor(downTile.getX()),
-								(int) Math.floor(downTile.getY()));
-						break;
-					case WATER:
-						break;
-					case ORNAMENT:
-						spawn(startingTile, currentTile, 1, 10);
-						break;
-					case FLOWER:
-						spawn(startingTile, currentTile, 1, 10);
-						break;
-					case GNOME:
-						map.setTile((int) Math.floor(downTile.getX() / 64),
-								(int) Math.floor(downTile.getY() / 64),
-								TileType.DIRT);
-						updateLocation((int) Math.floor(downTile.getX()),
-								(int) Math.floor(downTile.getY()));
-						addPoints(10);
-						break;
-					}
-					pressed = true;
-					keyTimer();
 				}
 			}
 			draw();

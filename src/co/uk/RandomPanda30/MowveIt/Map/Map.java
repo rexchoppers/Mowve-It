@@ -7,7 +7,7 @@ public class Map {
 
 	public Tile[][] map;
 
-	public Map() {
+	public Map () {
 		map = new Tile[16][15];
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map[i].length; j++) {
@@ -24,7 +24,7 @@ public class Map {
 		return map[x][y];
 	}
 
-	public Map(int[][] newMap) {
+	public Map (int[][] newMap) {
 		map = new Tile[16][15];
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map[i].length; j++) {
