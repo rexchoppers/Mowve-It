@@ -1,6 +1,5 @@
 package co.uk.RandomPanda30.MowveIt.Mowve;
 
-import java.util.Calendar;
 import java.util.Random;
 
 import org.lwjgl.LWJGLException;
@@ -17,31 +16,17 @@ import co.uk.RandomPanda30.MowveIt.Loaders.TextureManager;
 import co.uk.RandomPanda30.MowveIt.Map.Map;
 import co.uk.RandomPanda30.MowveIt.Music.Music;
 import co.uk.RandomPanda30.MowveIt.Tiles.Tile;
+import co.uk.RandomPanda30.MowveIt.Tiles.TileType;
 import co.uk.RandomPanda30.MowveIt.Utils.Clock;
 
 public class Mowve {
 
-	/**
-	 * Green || 0 = Grass Red || 1 = Dirt Blue || 2 = Water Yellow || 3 =
-	 * Ornaments Brown || 4 = Flowers Pink || 5 = Player
-	 */
-
 	private static int w;
 	private static int h;
-	private static int fps;
-
-	private static int startX;
-	private static int startY;
-
-	private static int startXDOG;
-	private static int startYDOG;
 
 	private static boolean fullscreen = false;
 
-	public static long time = 0;
-	public static int minutes = 1;
-
-	public static Mowve main = new Mowve();
+	public static Mowve main;
 	public static Player player;
 
 	public void run() {
@@ -50,9 +35,7 @@ public class Mowve {
 		try {
 			Display.setDisplayMode(new DisplayMode(w, h));
 			Display.create();
-			Display.setResizable(true);
-			time = Calendar.getInstance().getTimeInMillis()
-					+ (5 * 1000 * 60 * 60);
+			Display.setResizable(false);
 			// Mouse.setGrabbed(true);
 		} catch (LWJGLException e) {
 			e.printStackTrace();
@@ -93,43 +76,21 @@ public class Mowve {
 		Random random = new Random();
 		Map tileMap = new Map(tempMap);
 
-		startX = random.nextInt(15) + 1;
-		startY = random.nextInt(14) + 1;
+		int startX = random.nextInt(15) + 1;
+		int startY = random.nextInt(14) + 1;
 		Tile startTile = tileMap.getTile(startX, startY);
-		switch (startTile.getType()) {
-		case GRASS:
-			break;
-		case FLOWER:
+
+		if (!isGrass(startTile)) {
 			startX = random.nextInt(15) + 1;
 			startY = random.nextInt(14) + 1;
-			break;
-		case PLAYER:
-			startX = random.nextInt(15) + 1;
-			startY = random.nextInt(14) + 1;
-			break;
-		case WATER:
-			startX = random.nextInt(15) + 1;
-			startY = random.nextInt(14) + 1;
-			break;
-		case ORNAMENT:
-			startX = random.nextInt(15) + 1;
-			startY = random.nextInt(14) + 1;
-			break;
-		case GNOME:
-			startX = random.nextInt(15) + 1;
-			startY = random.nextInt(14) + 1;
-		case DIRT:
-			break;
+			isGrass(startTile);
 		}
 
 		player = new Player(tileMap.getTile(startX, startY), 64, 64,
 				TextureManager.qLoadTexture("ene"), tileMap);
 		player.draw();
 
-		startXDOG = random.nextInt(15) + 1;
-		startYDOG = random.nextInt(14) + 1;
-
-		Dog dog = new Dog(tileMap.getTile(startXDOG, startYDOG), 64, 64,
+		Dog dog = new Dog(tileMap.getTile(10, 10), 64, 64,
 				TextureManager.qLoadTexture("ene"), tileMap);
 		// dog.draw();
 
@@ -137,26 +98,25 @@ public class Mowve {
 				TextureManager.qLoadTexture("ene"), tileMap);
 
 		while (!Display.isCloseRequested()) {
-			Clock.update();
 			tileMap.draw();
+			Clock.update();
 			player.update();
-			// dog.update();
-
-			if (Keyboard.isKeyDown(Keyboard.KEY_F2)) {
-				if (!fullscreen) {
-					fullscreen = true;
-
-				}
-			}
 
 			if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
 				terminate();
 			}
 
 			Display.update();
-			Display.sync(60);
+			Display.sync(30);
 		}
 		Display.destroy();
+	}
+
+	public static boolean isGrass(Tile tile) {
+		if (tile.getType().equals(TileType.GRASS)) {
+			return true;
+		}
+		return false;
 	}
 
 	public static void exit() {
@@ -174,31 +134,16 @@ public class Mowve {
 	}
 
 	public static void main(String[] args) {
+		main = new Mowve();
 		main.run();
-	}
-
-	public static int getFPS() {
-		return fps;
-	}
-
-	public static void setFPS(int newFPS) {
-		fps = newFPS;
 	}
 
 	public static int getWidth() {
 		return w;
 	}
 
-	public static void setWidth(int newWidth) {
-		w = newWidth;
-	}
-
 	public static int getHeight() {
 		return h;
-	}
-
-	public static void setHeight(int newHeight) {
-		h = newHeight;
 	}
 
 	public static boolean isFullscreen() {
@@ -210,10 +155,5 @@ public class Mowve {
 
 	public static void setFullscreen(boolean newFullscreen) {
 		fullscreen = newFullscreen;
-	}
-
-	public static void resetGame() {
-		main = null;
-		main = new Mowve();
 	}
 }
