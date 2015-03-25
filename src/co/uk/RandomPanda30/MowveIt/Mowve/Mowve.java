@@ -86,8 +86,7 @@ public class Mowve {
 			isGrass(startTile);
 		}
 
-		player = new Player(tileMap.getTile(startX, startY), 64, 64,
-				TextureManager.qLoadTexture("ene"), tileMap);
+		player = new Player(tileMap.getTile(startX, startY), 64, 64, tileMap);
 		player.draw();
 
 		Dog dog = new Dog(tileMap.getTile(10, 10), 64, 64,

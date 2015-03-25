@@ -7,6 +7,7 @@ import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.opengl.Texture;
 
 import co.uk.RandomPanda30.MowveIt.Drawing.QuadDrawing;
+import co.uk.RandomPanda30.MowveIt.Drawing.R;
 import co.uk.RandomPanda30.MowveIt.Loaders.TextureManager;
 import co.uk.RandomPanda30.MowveIt.Map.Map;
 import co.uk.RandomPanda30.MowveIt.Mowve.Mowve;
@@ -44,17 +45,32 @@ public class Player {
 	private boolean f = true;
 	private boolean pressed = false;
 
-	public Player (Tile startTile, int width, int height, Texture texture,
-			Map map) {
+	private R rotation = R.LEFT;
+
+	public Player(Tile startTile, int width, int height, Map map) {
 		this.x = startTile.getX();
 		this.y = startTile.getY();
 		this.width = width;
 		this.height = height;
-		this.texture = texture;
 		this.map = map;
 	}
 
 	public void draw() {
+		switch (rotation.toString()) {
+		case "LEFT":
+			this.texture = TextureManager.qLoadTexture("playerL");
+			break;
+		case "RIGHT":
+			this.texture = TextureManager.qLoadTexture("playerR");
+			break;
+		case "UP":
+			this.texture = TextureManager.qLoadTexture("playerU");
+			break;
+		case "DOWN":
+			this.texture = TextureManager.qLoadTexture("playerD");
+			break;
+		}
+		
 		QuadDrawing.drawTexQuad(cX, cY, width, height, texture);
 
 		if (points <= 99) {
@@ -180,6 +196,7 @@ public class Player {
 							setStartTile();
 							moved = true;
 						}
+						rotation = R.RIGHT;
 						switch (rightTile.getType()) {
 						case GRASS:
 							map.setTile(
@@ -225,6 +242,7 @@ public class Player {
 							setStartTile();
 							moved = true;
 						}
+						rotation = R.LEFT;
 						switch (leftTile.getType()) {
 						case GRASS:
 							map.setTile((int) Math.floor(leftTile.getX() / 64),
@@ -268,6 +286,7 @@ public class Player {
 							setStartTile();
 							moved = true;
 						}
+						rotation = R.UP;
 						switch (upTile.getType()) {
 						case GRASS:
 							map.setTile((int) Math.floor(upTile.getX() / 64),
@@ -311,6 +330,7 @@ public class Player {
 							setStartTile();
 							moved = true;
 						}
+						rotation = R.DOWN;
 						switch (downTile.getType()) {
 						case GRASS:
 							map.setTile((int) Math.floor(downTile.getX() / 64),

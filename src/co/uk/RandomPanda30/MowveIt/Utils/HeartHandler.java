@@ -3,6 +3,7 @@ package co.uk.RandomPanda30.MowveIt.Utils;
 import org.newdawn.slick.opengl.Texture;
 
 import co.uk.RandomPanda30.MowveIt.Drawing.QuadDrawing;
+import co.uk.RandomPanda30.MowveIt.Drawing.R;
 
 public class HeartHandler {
 

@@ -8,6 +8,7 @@ import java.util.TimerTask;
 import org.newdawn.slick.opengl.Texture;
 
 import co.uk.RandomPanda30.MowveIt.Drawing.QuadDrawing;
+import co.uk.RandomPanda30.MowveIt.Drawing.R;
 import co.uk.RandomPanda30.MowveIt.Entities.Entity;
 import co.uk.RandomPanda30.MowveIt.Map.Map;
 import co.uk.RandomPanda30.MowveIt.Mowve.Mowve;
@@ -30,6 +31,8 @@ public class Dog implements Entity {
 	Tile leftTile;
 	Tile upTile;
 	Tile downTile;
+	
+	private R rotation = R.RIGHT;
 
 	public Dog(Tile startTile, int width, int height, Texture texture, Map map) {
 		this.x = startTile.getX();
@@ -43,7 +46,7 @@ public class Dog implements Entity {
 	}
 
 	public void draw() {
-		QuadDrawing.drawTexQuad(cX, cY, width, height, texture);
+		// QuadDrawing.drawTexQuad(cX, cY, width, height, texture, rotation);
 	}
 
 	public void updateLocation(int newX, int newY) {

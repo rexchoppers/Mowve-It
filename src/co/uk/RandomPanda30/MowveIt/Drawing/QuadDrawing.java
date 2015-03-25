@@ -17,7 +17,9 @@ public class QuadDrawing {
 	public static void drawTexQuad(float x, float y, float width, float height,
 			Texture texture) {
 		texture.bind();
+		GL11.glPushMatrix();
 		GL11.glTranslatef(x, y, 0);
+		GL11.glRotatef(0, x, y, 0);
 		GL11.glBegin(GL11.GL_QUADS);
 
 		GL11.glTexCoord2f(0, 0);
@@ -33,6 +35,7 @@ public class QuadDrawing {
 		GL11.glVertex2f(0, height);
 
 		GL11.glEnd();
+		GL11.glPopMatrix();
 		GL11.glLoadIdentity();
 	}
 }
