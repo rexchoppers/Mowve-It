@@ -106,7 +106,7 @@ public class Mowve {
 			}
 
 			Display.update();
-			Display.sync(30);
+			Display.sync(60);
 		}
 		Display.destroy();
 	}
