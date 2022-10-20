@@ -1,6 +1,6 @@
-package main.java.co.uk.rexchoppers.MowveIt.Utils;
+package co.uk.rexchoppers.MowveIt.Utils;
 
-import main.java.co.uk.rexchoppers.MowveIt.Drawing.QuadDrawing;
+import co.uk.rexchoppers.MowveIt.Drawing.QuadDrawing;
 import org.newdawn.slick.opengl.Texture;
 
 public class HeartHandler {

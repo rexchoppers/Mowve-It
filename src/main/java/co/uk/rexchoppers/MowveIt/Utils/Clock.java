@@ -1,4 +1,4 @@
-package main.java.co.uk.rexchoppers.MowveIt.Utils;
+package co.uk.rexchoppers.MowveIt.Utils;
 
 import org.lwjgl.Sys;
 

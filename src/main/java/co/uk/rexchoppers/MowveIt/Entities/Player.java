@@ -1,20 +1,20 @@
-package main.java.co.uk.rexchoppers.MowveIt.Entities;
+package co.uk.rexchoppers.MowveIt.Entities;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-import main.java.co.uk.rexchoppers.MowveIt.Drawing.R;
-import main.java.co.uk.rexchoppers.MowveIt.Loaders.TextureManager;
-import main.java.co.uk.rexchoppers.MowveIt.Map.Map;
-import main.java.co.uk.rexchoppers.MowveIt.Mowve.Mowve;
-import main.java.co.uk.rexchoppers.MowveIt.Tiles.Tile;
-import main.java.co.uk.rexchoppers.MowveIt.Tiles.TileType;
+import co.uk.rexchoppers.MowveIt.Drawing.R;
+import co.uk.rexchoppers.MowveIt.Loaders.TextureManager;
+import co.uk.rexchoppers.MowveIt.Map.Map;
+import co.uk.rexchoppers.MowveIt.Mowve.Mowve;
+import co.uk.rexchoppers.MowveIt.Tiles.Tile;
+import co.uk.rexchoppers.MowveIt.Tiles.TileType;
 import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.opengl.Texture;
 
-import main.java.co.uk.rexchoppers.MowveIt.Drawing.QuadDrawing;
-import main.java.co.uk.rexchoppers.MowveIt.Utils.HeartHandler;
-import main.java.co.uk.rexchoppers.MowveIt.Utils.TextHandler;
+import co.uk.rexchoppers.MowveIt.Drawing.QuadDrawing;
+import co.uk.rexchoppers.MowveIt.Utils.HeartHandler;
+import co.uk.rexchoppers.MowveIt.Utils.TextHandler;
 
 public class Player {
 

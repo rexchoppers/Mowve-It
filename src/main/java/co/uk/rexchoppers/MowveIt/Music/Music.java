@@ -1,4 +1,4 @@
-package main.java.co.uk.rexchoppers.MowveIt.Music;
+package co.uk.rexchoppers.MowveIt.Music;
 
 import java.io.IOException;
 

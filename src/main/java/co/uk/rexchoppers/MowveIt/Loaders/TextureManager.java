@@ -1,4 +1,4 @@
-package main.java.co.uk.rexchoppers.MowveIt.Loaders;
+package co.uk.rexchoppers.MowveIt.Loaders;
 
 import java.io.IOException;
 import java.io.InputStream;

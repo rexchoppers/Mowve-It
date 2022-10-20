@@ -1,4 +1,4 @@
-package main.java.co.uk.rexchoppers.MowveIt.Render;
+package co.uk.rexchoppers.MowveIt.Render;
 
 import org.lwjgl.opengl.GL11;
 

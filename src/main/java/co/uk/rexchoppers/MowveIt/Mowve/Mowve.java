@@ -1,11 +1,11 @@
-package main.java.co.uk.rexchoppers.MowveIt.Mowve;
+package co.uk.rexchoppers.MowveIt.Mowve;
 
 import java.util.Random;
 
-import main.java.co.uk.rexchoppers.MowveIt.Map.Map;
-import main.java.co.uk.rexchoppers.MowveIt.Tiles.Tile;
-import main.java.co.uk.rexchoppers.MowveIt.Tiles.TileType;
-import main.java.co.uk.rexchoppers.MowveIt.Utils.Clock;
+import co.uk.rexchoppers.MowveIt.Map.Map;
+import co.uk.rexchoppers.MowveIt.Tiles.Tile;
+import co.uk.rexchoppers.MowveIt.Tiles.TileType;
+import co.uk.rexchoppers.MowveIt.Utils.Clock;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.openal.AL;
@@ -13,11 +13,11 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 
-import main.java.co.uk.rexchoppers.MowveIt.Entities.Cat;
-import main.java.co.uk.rexchoppers.MowveIt.Entities.Dog;
-import main.java.co.uk.rexchoppers.MowveIt.Entities.Player;
-import main.java.co.uk.rexchoppers.MowveIt.Loaders.TextureManager;
-import main.java.co.uk.rexchoppers.MowveIt.Music.Music;
+import co.uk.rexchoppers.MowveIt.Entities.Cat;
+import co.uk.rexchoppers.MowveIt.Entities.Dog;
+import co.uk.rexchoppers.MowveIt.Entities.Player;
+import co.uk.rexchoppers.MowveIt.Loaders.TextureManager;
+import co.uk.rexchoppers.MowveIt.Music.Music;
 
 public class Mowve {
 

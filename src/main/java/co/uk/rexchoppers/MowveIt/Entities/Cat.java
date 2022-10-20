@@ -1,16 +1,16 @@
-package main.java.co.uk.rexchoppers.MowveIt.Entities;
+package co.uk.rexchoppers.MowveIt.Entities;
 
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import main.java.co.uk.rexchoppers.MowveIt.Map.Map;
-import main.java.co.uk.rexchoppers.MowveIt.Mowve.Mowve;
-import main.java.co.uk.rexchoppers.MowveIt.Tiles.Tile;
+import co.uk.rexchoppers.MowveIt.Map.Map;
+import co.uk.rexchoppers.MowveIt.Mowve.Mowve;
+import co.uk.rexchoppers.MowveIt.Tiles.Tile;
 import org.newdawn.slick.opengl.Texture;
 
-import main.java.co.uk.rexchoppers.MowveIt.Drawing.R;
+import co.uk.rexchoppers.MowveIt.Drawing.R;
 
 public class Cat implements Entity {
 

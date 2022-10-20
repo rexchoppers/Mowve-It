@@ -1,6 +1,6 @@
-package main.java.co.uk.rexchoppers.MowveIt.Entities;
+package co.uk.rexchoppers.MowveIt.Entities;
 
-import main.java.co.uk.rexchoppers.MowveIt.Tiles.Tile;
+import co.uk.rexchoppers.MowveIt.Tiles.Tile;
 
 public abstract interface Entity {
 

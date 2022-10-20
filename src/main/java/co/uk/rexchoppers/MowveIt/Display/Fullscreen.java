@@ -1,6 +1,6 @@
-package main.java.co.uk.rexchoppers.MowveIt.Display;
+package co.uk.rexchoppers.MowveIt.Display;
 
-import main.java.co.uk.rexchoppers.MowveIt.Mowve.Mowve;
+import co.uk.rexchoppers.MowveIt.Mowve.Mowve;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;

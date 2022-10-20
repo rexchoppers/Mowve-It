@@ -1,7 +1,7 @@
-package main.java.co.uk.rexchoppers.MowveIt.Map;
+package co.uk.rexchoppers.MowveIt.Map;
 
-import main.java.co.uk.rexchoppers.MowveIt.Tiles.Tile;
-import main.java.co.uk.rexchoppers.MowveIt.Tiles.TileType;
+import co.uk.rexchoppers.MowveIt.Tiles.Tile;
+import co.uk.rexchoppers.MowveIt.Tiles.TileType;
 
 public class Map {
 

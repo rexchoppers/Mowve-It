@@ -1,9 +1,9 @@
-package main.java.co.uk.rexchoppers.MowveIt.Tiles;
+package co.uk.rexchoppers.MowveIt.Tiles;
 
 import org.newdawn.slick.opengl.Texture;
 
-import main.java.co.uk.rexchoppers.MowveIt.Drawing.QuadDrawing;
-import main.java.co.uk.rexchoppers.MowveIt.Loaders.TextureManager;
+import co.uk.rexchoppers.MowveIt.Drawing.QuadDrawing;
+import co.uk.rexchoppers.MowveIt.Loaders.TextureManager;
 
 public class Tile {
 

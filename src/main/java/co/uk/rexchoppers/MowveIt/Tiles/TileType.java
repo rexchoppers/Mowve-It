@@ -1,4 +1,4 @@
-package main.java.co.uk.rexchoppers.MowveIt.Tiles;
+package co.uk.rexchoppers.MowveIt.Tiles;
 
 public enum TileType {
 
